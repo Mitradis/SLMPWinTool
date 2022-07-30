@@ -221,7 +221,10 @@ namespace SLMPWinTool
             try
             {
                 process.Start();
-                process.WaitForExit();
+                if (index != 4)
+                {
+                    process.WaitForExit();
+                }
             }
             catch
             {
