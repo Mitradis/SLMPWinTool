@@ -15,10 +15,32 @@ namespace SLMPWinTool
         List<string> exeList = new List<string>() { Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "icacls.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "reg.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "WindowsPowerShell", "v1.0", "Powershell.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "taskkill.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "explorer.exe") };
         string tempFile1 = Path.GetTempPath() + "1SLMPWinTool.reg";
         string tempFile2 = Path.GetTempPath() + "2SLMPWinTool.reg";
+        string sOn = "Включена";
+        string sOff = "Выключена";
+        string sWork = "Работает";
+        string sFreeze = "Заморожена";
+        string sDisabled = "Отключена";
+        string sLaunch = "Запустить?";
+        string sConfirm = "Подтвеждение";
+        string sExplorer = "Выключить Проводник?";
+        string sFolders = "Сбросить настройки отображения для всех папок?";
+        string sMixer = "Сбросить настройки аудио микшера?";
+        string sCompatibility = "Сбросить все параметры совместимости для всех приложений?";
+        string eEventLog1 = "Не удалось удалить логи службы Журнала событий или запретить доступ к папке: ";
+        string eEventLog2 = "Не выполнена первая перезагрузка после статуса Выключена?";
+        string eStart = "Не удалось запустить процесс: ";
+        string eRegistry = "Ошибка доступа к реестру: ";
+        string eRestart = "Требуется перезагрузка для запуска: ";
+        string eWrite = "Не удалось записать файл: ";
+        string eDelete = "Не удалось удалить файл: ";
 
         public FormMain()
         {
             InitializeComponent();
+            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "en-US", "explorer.exe.mui")))
+            {
+                toEnglish();
+            }
             refrashValues();
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
@@ -45,9 +67,9 @@ namespace SLMPWinTool
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void refrashValues()
         {
-            label3.Text = (getValue(3, @"SYSTEM\ControlSet001\Services\mpssvc", "Start", "4") && getValue(3, @"SYSTEM\ControlSet001\Services\InstallService", "Start", "4")) ? "Выключена" : "Включена";
-            label5.Text = getValue(3, @"SYSTEM\ControlSet001\Services\EventLog", "Start", "2") ? (checkAccess(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "winevt", "Logs")) ? "Включена" : "Заморожена") : "Отключена";
-            label9.Text = checkService("EventLog") ? "Работает" : "Выключена";
+            label3.Text = (getValue(3, @"SYSTEM\ControlSet001\Services\mpssvc", "Start", "4") && getValue(3, @"SYSTEM\ControlSet001\Services\InstallService", "Start", "4")) ? sOff : sOn;
+            label5.Text = getValue(3, @"SYSTEM\ControlSet001\Services\EventLog", "Start", "2") ? (checkAccess(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "winevt", "Logs")) ? sOn : sFreeze) : sDisabled;
+            label9.Text = checkService("EventLog") ? sWork : sOff;
             setColor(button1, 1, @"*\shellex\ContextMenuHandlers\{90AA3A4E-1CBA-4233-B8BB-535773D48449}");
             setColor(button2, 1, @"exefile\shellex\ContextMenuHandlers\PintoStartScreen");
             setColor(button3, 1, @"Folder\shell\pintohome");
@@ -81,7 +103,7 @@ namespace SLMPWinTool
         }
         private void buttonEventLogOFF_Click(object sender, EventArgs e)
         {
-            if (label5.Text == "Отключена")
+            if (label5.Text == sDisabled)
             {
                 string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "winevt", "Logs");
                 try
@@ -93,10 +115,10 @@ namespace SLMPWinTool
                 }
                 catch
                 {
-                    MessageBox.Show("Не удалось удалить логи службы Журнала событий или запретить доступ к папке: " + Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "winevt", "Logs") + Environment.NewLine + "Не выполнена первая перезагрузка после статуса Выключена?");
+                    MessageBox.Show(eEventLog1 + path + Environment.NewLine + eEventLog2);
                 }
             }
-            else if (label5.Text == "Включена")
+            else if (label5.Text == sOn)
             {
                 importRegistry(new List<string>() { @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog]", "\"Start\"=dword:00000004" });
             }
@@ -120,8 +142,7 @@ namespace SLMPWinTool
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            toggleButton((Button)sender, new List<string>() { @"[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\ModernSharing]", "@=\"{e2bf9676-5f8f-435c-97eb-11607a5bedf7}\"", @"[HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\SendTo]", "@=\"{7BA4C740-9E81-11CF-99D3-00AA004AE837}\"" }, new List<string>() { @"[-HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\ModernSharing]",
-@"[-HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\SendTo]" });
+            toggleButton((Button)sender, new List<string>() { @"[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\ModernSharing]", "@=\"{e2bf9676-5f8f-435c-97eb-11607a5bedf7}\"", @"[HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\SendTo]", "@=\"{7BA4C740-9E81-11CF-99D3-00AA004AE837}\"" }, new List<string>() { @"[-HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\ModernSharing]", @"[-HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\SendTo]" });
         }
         private void button6_Click(object sender, EventArgs e)
         {
@@ -159,10 +180,10 @@ namespace SLMPWinTool
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button14_Click(object sender, EventArgs e)
         {
-            if (dialogResult("Выключить Проводник?", "Подтвеждение"))
+            if (dialogResult(sExplorer, sConfirm))
             {
                 startProcess(3, "/f /im explorer.exe");
-                if (dialogResult("Запустить?", "Подтвеждение"))
+                if (dialogResult(sLaunch, sConfirm))
                 {
                     startProcess(4, null);
                 }
@@ -170,7 +191,7 @@ namespace SLMPWinTool
         }
         private void button15_Click(object sender, EventArgs e)
         {
-            if (dialogResult("Сбросить настройки отображения для всех папок?", "Подтвеждение"))
+            if (dialogResult(sFolders, sConfirm))
             {
                 startProcess(3, "/f /im explorer.exe");
                 deleteFile(tempFile2);
@@ -183,7 +204,7 @@ namespace SLMPWinTool
         }
         private void button16_Click(object sender, EventArgs e)
         {
-            if (dialogResult("Сбросить настройки аудио микшера?", "Подтвеждение"))
+            if (dialogResult(sMixer, sConfirm))
             {
                 startProcess(3, "/f /im explorer.exe");
                 importRegistry(new List<string>() { @"[-HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\LowRegistry\Audio\PolicyConfig\PropertyStore]", @"[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\LowRegistry\Audio\PolicyConfig\PropertyStore]" });
@@ -192,7 +213,7 @@ namespace SLMPWinTool
         }
         private void button17_Click(object sender, EventArgs e)
         {
-            if (dialogResult("Сбросить все параметры совместимости для всех приложений?", "Подтвеждение"))
+            if (dialogResult(sCompatibility, sConfirm))
             {
                 importRegistry(new List<string>() { @"[-HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]", @"[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DirectDraw\Compatibility]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DirectDraw\Compatibility]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\DirectDraw\Compatibility]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\DirectDraw\Compatibility]" });
             }
@@ -228,7 +249,7 @@ namespace SLMPWinTool
             }
             catch
             {
-                MessageBox.Show("Не удалось запустить процесс: " + process.StartInfo.FileName + " " + args);
+                MessageBox.Show(eStart + process.StartInfo.FileName + " " + args);
             }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
@@ -262,7 +283,7 @@ namespace SLMPWinTool
             }
             catch
             {
-                MessageBox.Show("Ошибка доступа к реестру: " + path);
+                MessageBox.Show(eRegistry + path);
                 return false;
             }
         }
@@ -286,7 +307,7 @@ namespace SLMPWinTool
                 }
                 catch
                 {
-                    MessageBox.Show("Требуется перезагрузка для запуска: " + name);
+                    MessageBox.Show(eRestart + name);
                 }
             }
             sc.Close();
@@ -314,7 +335,7 @@ namespace SLMPWinTool
             }
             catch
             {
-                MessageBox.Show("Не удалось записать файл: " + path);
+                MessageBox.Show(eWrite + path);
                 return false;
             }
         }
@@ -328,7 +349,7 @@ namespace SLMPWinTool
             }
             catch
             {
-                MessageBox.Show("Не удалось удалить файл: " + path);
+                MessageBox.Show(eDelete + path);
                 return false;
             }
         }
@@ -347,6 +368,62 @@ namespace SLMPWinTool
         {
             DialogResult dialog = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
             return dialog == DialogResult.Yes;
+        }
+        private void toEnglish()
+        {
+            sOn = "Enabled";
+            sOff = "Off";
+            sWork = "Working";
+            sFreeze = "Freeze";
+            sDisabled = "Disabled";
+            sLaunch = "Start?";
+            sConfirm = "Confirmation";
+            sExplorer = "Shutdown Explorer?";
+            sFolders = "Reset display settings for all folders?";
+            sMixer = "Reset audio mixer settings?";
+            sCompatibility = "Reset all compatibility settings for all apps?";
+            eEventLog1 = "Failed to delete Event Log service logs or deny access to folder: ";
+            eEventLog2 = "First reboot failed after Disabled status?";
+            eStart = "Failed to start process: ";
+            eRegistry = "Error accessing registry: ";
+            eRestart = "Restart required to start: ";
+            eWrite = "Failed to write file: ";
+            eDelete = "Failed to delete file: ";
+            buttonAppXON.Text = "Turn on";
+            buttonAppXOFF.Text = "Turn off";
+            buttonEventLogON.Text = "Turn on";
+            buttonEventLogOFF.Text = "Freeze";
+            button1.Text = "Pin to taskbar";
+            button2.Text = "Pin to home screen";
+            button3.Text = "Pin to Quick Access Toolbar";
+            button4.Text = "Fix compatibility issues";
+            button5.Text = "Send";
+            button6.Text = "Grant access to";
+            button7.Text = "Add to Library";
+            button8.Text = "Pin for Classic Shell";
+            button9.Text = "Downloads";
+            button10.Text = "3D objects";
+            button11.Text = "Images";
+            button12.Text = "Music";
+            button13.Text = "Video";
+            button14.Text = "Restart explorer";
+            button15.Text = "Reset folders";
+            button16.Text = "Reset mixer";
+            button17.Text = "Reset compatibility";
+            label1.Text = "AppX installation support";
+            label2.Text = "Current state:";
+            label4.Text = "Changes require a reboot.";
+            label7.Text = "Recording and provision";
+            label6.Text = "Service status:";
+            label10.Text = "Service state:";
+            label8.Text = "Freezing requires reapplying the Freeze button after a reboot.";
+            label11.Text = "Managing Standard Context Menu Items";
+            label12.Text = "Managing elements in" + Environment.NewLine + "This computer";
+            label13.Text = "Various service commands";
+            tabPage2.Text = "Event Log";
+            tabPage3.Text = "Context menu";
+            tabPage4.Text = "This computer";
+            tabPage5.Text = "Service";
         }
     }
 }

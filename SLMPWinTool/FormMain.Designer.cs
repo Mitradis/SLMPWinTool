@@ -86,18 +86,18 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.label12 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.button17 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -394,7 +394,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(235, 30);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Зак.на начальном экране";
+            this.button2.Text = "Зак. на начальном экране";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -405,7 +405,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(235, 30);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Зак.на панели быстрого доступа";
+            this.button3.Text = "Зак. на панели быстрого доступа";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -445,6 +445,71 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Этот компьютер";
             // 
+            // button13
+            // 
+            this.button13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button13.Location = new System.Drawing.Point(69, 118);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(120, 30);
+            this.button13.TabIndex = 4;
+            this.button13.Text = "Видео";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // button12
+            // 
+            this.button12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button12.Location = new System.Drawing.Point(132, 82);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(120, 30);
+            this.button12.TabIndex = 3;
+            this.button12.Text = "Музыка";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button9.Location = new System.Drawing.Point(132, 46);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(120, 30);
+            this.button9.TabIndex = 1;
+            this.button9.Text = "Загрузки";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button11
+            // 
+            this.button11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button11.Location = new System.Drawing.Point(6, 82);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(120, 30);
+            this.button11.TabIndex = 2;
+            this.button11.Text = "Изображения";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button10.Location = new System.Drawing.Point(6, 46);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(120, 30);
+            this.button10.TabIndex = 0;
+            this.button10.Text = "3D объекты";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(6, 3);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(246, 40);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "Управление элементами в\r\nЭтот компьютер";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.button17);
@@ -459,102 +524,16 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Сервис";
             // 
-            // label12
+            // button17
             // 
-            this.label12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(6, 3);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(246, 40);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "Управление элементами в\r\nЭтот компьютер";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button9
-            // 
-            this.button9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button9.Location = new System.Drawing.Point(132, 46);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(120, 30);
-            this.button9.TabIndex = 1;
-            this.button9.Text = "Загрузки";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button10
-            // 
-            this.button10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button10.Location = new System.Drawing.Point(6, 46);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(120, 30);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "3D объекты";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button11
-            // 
-            this.button11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button11.Location = new System.Drawing.Point(6, 82);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(120, 30);
-            this.button11.TabIndex = 2;
-            this.button11.Text = "Изображения";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // button12
-            // 
-            this.button12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button12.Location = new System.Drawing.Point(132, 82);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(120, 30);
-            this.button12.TabIndex = 3;
-            this.button12.Text = "Музыка";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // button13
-            // 
-            this.button13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button13.Location = new System.Drawing.Point(69, 118);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(120, 30);
-            this.button13.TabIndex = 4;
-            this.button13.Text = "Видео";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // label13
-            // 
-            this.label13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(6, 3);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(246, 40);
-            this.label13.TabIndex = 3;
-            this.label13.Text = "Различные сервисные  команды";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button14
-            // 
-            this.button14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button14.Location = new System.Drawing.Point(6, 46);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(246, 30);
-            this.button14.TabIndex = 0;
-            this.button14.Text = "Перезапустить проводник";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // button15
-            // 
-            this.button15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button15.Location = new System.Drawing.Point(6, 82);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(246, 30);
-            this.button15.TabIndex = 1;
-            this.button15.Text = "Сбросить папки";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
+            this.button17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button17.Location = new System.Drawing.Point(6, 154);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(246, 30);
+            this.button17.TabIndex = 3;
+            this.button17.Text = "Сбросить совместимость";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // button16
             // 
@@ -567,16 +546,37 @@
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
-            // button17
+            // button15
             // 
-            this.button17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button17.Location = new System.Drawing.Point(6, 154);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(246, 30);
-            this.button17.TabIndex = 3;
-            this.button17.Text = "Сбросить совместимость";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
+            this.button15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button15.Location = new System.Drawing.Point(6, 82);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(246, 30);
+            this.button15.TabIndex = 1;
+            this.button15.Text = "Сбросить папки";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // button14
+            // 
+            this.button14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button14.Location = new System.Drawing.Point(6, 46);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(246, 30);
+            this.button14.TabIndex = 0;
+            this.button14.Text = "Перезапустить проводник";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // label13
+            // 
+            this.label13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(6, 3);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(246, 40);
+            this.label13.TabIndex = 3;
+            this.label13.Text = "Различные сервисные  команды";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormMain
             // 
