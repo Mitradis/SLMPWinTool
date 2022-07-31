@@ -37,7 +37,7 @@ namespace SLMPWinTool
         public FormMain()
         {
             InitializeComponent();
-            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "en-US", "explorer.exe.mui")))
+            if (!File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "ru-RU", "explorer.exe.mui")))
             {
                 toEnglish();
             }
