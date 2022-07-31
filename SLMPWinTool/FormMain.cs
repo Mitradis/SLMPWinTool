@@ -13,8 +13,8 @@ namespace SLMPWinTool
     public partial class FormMain : Form
     {
         List<string> exeList = new List<string>() { Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "icacls.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "reg.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "WindowsPowerShell", "v1.0", "Powershell.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "taskkill.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "explorer.exe") };
-        string tempFile1 = Path.GetTempPath() + "1SLMPWinTool.reg";
-        string tempFile2 = Path.GetTempPath() + "2SLMPWinTool.reg";
+        string tempFile1 = Path.GetTempPath() + "SLMPWinTool1.reg";
+        string tempFile2 = Path.GetTempPath() + "SLMPWinTool2.reg";
         string sOn = "Включена";
         string sOff = "Выключена";
         string sWork = "Работает";
@@ -41,6 +41,7 @@ namespace SLMPWinTool
             {
                 toEnglish();
             }
+            button8.Visible = File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Classic Shell", "ClassicStartMenu.exe"));
             refrashValues();
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
@@ -79,8 +80,8 @@ namespace SLMPWinTool
             setColor(button6, 1, @"Directory\shellex\ContextMenuHandlers\Sharing");
             setColor(button7, 1, @"Folder\shellex\ContextMenuHandlers\Library Location");
             setColor(button8, 1, @"exefile\shellex\ContextMenuHandlers\StartMenuExt");
-            setColor(button9, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}");
-            setColor(button10, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}");
+            setColor(button9, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}");
+            setColor(button10, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}");
             setColor(button11, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}");
             setColor(button12, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}");
             setColor(button13, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}");
@@ -159,11 +160,11 @@ namespace SLMPWinTool
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void button9_Click(object sender, EventArgs e)
         {
-            toggleButton((Button)sender, new List<string>() { @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]" }, new List<string>() { @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]" });
+            toggleButton((Button)sender, new List<string>() { @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]" }, new List<string>() { @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]" });
         }
         private void button10_Click(object sender, EventArgs e)
         {
-            toggleButton((Button)sender, new List<string>() { @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]" }, new List<string>() { @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]" });
+            toggleButton((Button)sender, new List<string>() { @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]" }, new List<string>() { @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]" });
         }
         private void button11_Click(object sender, EventArgs e)
         {
@@ -196,7 +197,7 @@ namespace SLMPWinTool
                 startProcess(3, "/f /im explorer.exe");
                 deleteFile(tempFile2);
                 startProcess(1, "export " + @"HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell " + tempFile2);
-                importRegistry(new List<string>() { @"[-HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell]", @"[HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell]" });
+                importRegistry(new List<string>() { @"[-HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell]" });
                 startProcess(1, "import \"" + tempFile2 + "\"");
                 deleteFile(tempFile2);
                 startProcess(4, null);
@@ -401,8 +402,8 @@ namespace SLMPWinTool
             button6.Text = "Grant access to";
             button7.Text = "Add to Library";
             button8.Text = "Pin for Classic Shell";
-            button9.Text = "Downloads";
-            button10.Text = "3D objects";
+            button9.Text = "3D objects";
+            button10.Text = "Downloads";
             button11.Text = "Images";
             button12.Text = "Music";
             button13.Text = "Video";
@@ -415,8 +416,8 @@ namespace SLMPWinTool
             label4.Text = "Changes require a reboot.";
             label7.Text = "Recording and provision";
             label6.Text = "Service status:";
-            label10.Text = "Service state:";
             label8.Text = "Freezing requires reapplying the Freeze button after a reboot.";
+            label10.Text = "Service state:";
             label11.Text = "Managing Standard Context Menu Items";
             label12.Text = "Managing elements in" + Environment.NewLine + "This computer";
             label13.Text = "Various service commands";

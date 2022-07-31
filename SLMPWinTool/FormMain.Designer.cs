@@ -3,7 +3,7 @@
     partial class FormMain
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
@@ -19,7 +19,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button buttonAppXOFF;
         private System.Windows.Forms.Button buttonAppXON;
         private System.Windows.Forms.Button buttonEventLogOFF;
@@ -88,9 +88,9 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button13 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.button17 = new System.Windows.Forms.Button();
@@ -434,9 +434,9 @@
             // 
             this.tabPage4.Controls.Add(this.button13);
             this.tabPage4.Controls.Add(this.button12);
-            this.tabPage4.Controls.Add(this.button9);
-            this.tabPage4.Controls.Add(this.button11);
             this.tabPage4.Controls.Add(this.button10);
+            this.tabPage4.Controls.Add(this.button11);
+            this.tabPage4.Controls.Add(this.button9);
             this.tabPage4.Controls.Add(this.label12);
             this.tabPage4.Location = new System.Drawing.Point(104, 4);
             this.tabPage4.Name = "tabPage4";
@@ -467,16 +467,16 @@
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
-            // button9
+            // button10
             // 
-            this.button9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button9.Location = new System.Drawing.Point(132, 46);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(120, 30);
-            this.button9.TabIndex = 1;
-            this.button9.Text = "Загрузки";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.button10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button10.Location = new System.Drawing.Point(132, 46);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(120, 30);
+            this.button10.TabIndex = 1;
+            this.button10.Text = "Загрузки";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // button11
             // 
@@ -489,16 +489,16 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
-            // button10
+            // button9
             // 
-            this.button10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button10.Location = new System.Drawing.Point(6, 46);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(120, 30);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "3D объекты";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.button9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button9.Location = new System.Drawing.Point(6, 46);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(120, 30);
+            this.button9.TabIndex = 0;
+            this.button9.Text = "3D объекты";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // label12
             // 
