@@ -17,6 +17,7 @@ namespace SLMPWinTool
         string tempFile2 = Path.GetTempPath() + "SLMPWinTool2.reg";
         string sOn = "Включена";
         string sOff = "Выключена";
+        string sHalf = "Частично";
         string sWork = "Работает";
         string sFreeze = "Заморожена";
         string sDisabled = "Отключена";
@@ -68,8 +69,9 @@ namespace SLMPWinTool
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void refrashValues()
         {
-            label3.Text = (getValue(3, @"SYSTEM\ControlSet001\Services\mpssvc", "Start", "4") && getValue(3, @"SYSTEM\ControlSet001\Services\InstallService", "Start", "4")) ? sOff : sOn;
+            label3.Text = getValue(3, @"SYSTEM\ControlSet001\Services\InstallService", "Start", "4") ? sOff : getValue(3, @"SYSTEM\ControlSet001\Services\mpssvc", "Start", "4") ? sHalf : sOn;
             label5.Text = getValue(3, @"SYSTEM\ControlSet001\Services\EventLog", "Start", "2") ? (checkAccess(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "winevt", "Logs")) ? sOn : sFreeze) : sDisabled;
+            label15.Text = getValue(3, @"SYSTEM\ControlSet001\Services\mpssvc", "Start", "4") ? sOff : sOn;
             label9.Text = checkService("EventLog") ? sWork : sOff;
             setColor(button1, 1, @"*\shellex\ContextMenuHandlers\{90AA3A4E-1CBA-4233-B8BB-535773D48449}");
             setColor(button2, 1, @"exefile\shellex\ContextMenuHandlers\PintoStartScreen");
@@ -80,20 +82,32 @@ namespace SLMPWinTool
             setColor(button6, 1, @"Directory\shellex\ContextMenuHandlers\Sharing");
             setColor(button7, 1, @"Folder\shellex\ContextMenuHandlers\Library Location");
             setColor(button8, 1, @"exefile\shellex\ContextMenuHandlers\StartMenuExt");
-            setColor(button9, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}");
-            setColor(button10, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}");
-            setColor(button11, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}");
-            setColor(button12, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}");
-            setColor(button13, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}");
+            setColor(buttonDesktop, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}");
+            setColor(buttonDocuments, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{D3162B92-9365-467A-956B-92703ACA08AF}");
+            setColor(button3DObjects, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}");
+            setColor(buttonDownloads, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}");
+            setColor(buttonImages, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}");
+            setColor(buttonMusic, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}");
+            setColor(buttonVideos, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}");
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void buttonAppXON_Click(object sender, System.EventArgs e)
         {
-            importRegistry(new List<string>() { @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]", "\"Start\"=dword:00000002", @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService]", "\"Start\"=dword:00000002" });
+            importRegistry(new List<string>() { @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]", "\"Start\"=dword:00000002", @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService]", "\"Start\"=dword:00000003" });
         }
         private void buttonAppXOFF_Click(object sender, System.EventArgs e)
         {
             importRegistry(new List<string>() { @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]", "\"Start\"=dword:00000004", @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService]", "\"Start\"=dword:00000004" });
+        }
+        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
+        private void buttonFirewallON_Click(object sender, EventArgs e)
+        {
+            importRegistry(new List<string>() { @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]", "\"Start\"=dword:00000002" });
+        }
+
+        private void buttonFirewallOFF_Click(object sender, EventArgs e)
+        {
+            importRegistry(new List<string>() { @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]", "\"Start\"=dword:00000004" });
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void buttonEventLogON_Click(object sender, EventArgs e)
@@ -158,23 +172,31 @@ namespace SLMPWinTool
             toggleButton((Button)sender, new List<string>() { @"[HKEY_CLASSES_ROOT\exefile\shellex\ContextMenuHandlers\StartMenuExt]", "@=\"{E595F05F-903F-4318-8B0A-7F633B520D2B}\"", @"[HKEY_CLASSES_ROOT\Folder\shellex\ContextMenuHandlers\StartMenuExt]", "@=\"{E595F05F-903F-4318-8B0A-7F633B520D2B}\"", @"[HKEY_CLASSES_ROOT\lnkfile\shellex\ContextMenuHandlers\StartMenuExt]", "@=\"{E595F05F-903F-4318-8B0A-7F633B520D2B}\"", @"[HKEY_CLASSES_ROOT\Launcher.SystemSettings\shellex\ContextMenuHandlers\StartMenuExt]", "@=\"{E595F05F-903F-4318-8B0A-7F633B520D2B}\"", @"[HKEY_CLASSES_ROOT\Launcher.ImmersiveApplication\shellex\ContextMenuHandlers\StartMenuExt]", "@=\"{E595F05F-903F-4318-8B0A-7F633B520D2B}\"" }, new List<string>() { @"[-HKEY_CLASSES_ROOT\exefile\shellex\ContextMenuHandlers\StartMenuExt]", @"[-HKEY_CLASSES_ROOT\Folder\shellex\ContextMenuHandlers\StartMenuExt]", @"[-HKEY_CLASSES_ROOT\lnkfile\shellex\ContextMenuHandlers\StartMenuExt]", @"[-HKEY_CLASSES_ROOT\Launcher.SystemSettings\shellex\ContextMenuHandlers\StartMenuExt]", @"[-HKEY_CLASSES_ROOT\Launcher.ImmersiveApplication\shellex\ContextMenuHandlers\StartMenuExt]" });
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        private void button9_Click(object sender, EventArgs e)
+        private void buttonDesktop_Click(object sender, EventArgs e)
+        {
+            toggleButton((Button)sender, new List<string>() { @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}]" }, new List<string>() { @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}]" });
+        }
+        private void buttonDocuments_Click(object sender, EventArgs e)
+        {
+            toggleButton((Button)sender, new List<string>() { @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{D3162B92-9365-467A-956B-92703ACA08AF}]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{D3162B92-9365-467A-956B-92703ACA08AF}]" }, new List<string>() { @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{D3162B92-9365-467A-956B-92703ACA08AF}]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{D3162B92-9365-467A-956B-92703ACA08AF}]" });
+        }
+        private void button3DObjects_Click(object sender, EventArgs e)
         {
             toggleButton((Button)sender, new List<string>() { @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]" }, new List<string>() { @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]" });
         }
-        private void button10_Click(object sender, EventArgs e)
+        private void buttonDownloads_Click(object sender, EventArgs e)
         {
             toggleButton((Button)sender, new List<string>() { @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]" }, new List<string>() { @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}]" });
         }
-        private void button11_Click(object sender, EventArgs e)
+        private void buttonImages_Click(object sender, EventArgs e)
         {
             toggleButton((Button)sender, new List<string>() { @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}]" }, new List<string>() { @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}]" });
         }
-        private void button12_Click(object sender, EventArgs e)
+        private void buttonMusic_Click(object sender, EventArgs e)
         {
             toggleButton((Button)sender, new List<string>() { @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}]" }, new List<string>() { @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}]" });
         }
-        private void button13_Click(object sender, EventArgs e)
+        private void buttonVideos_Click(object sender, EventArgs e)
         {
             toggleButton((Button)sender, new List<string>() { @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}]" }, new List<string>() { @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}]" });
         }
@@ -218,6 +240,11 @@ namespace SLMPWinTool
             {
                 importRegistry(new List<string>() { @"[-HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]", @"[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DirectDraw\Compatibility]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DirectDraw\Compatibility]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\DirectDraw\Compatibility]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\DirectDraw\Compatibility]" });
             }
+        }
+        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            refrashValues();
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void importRegistry(List<string> list)
@@ -374,6 +401,7 @@ namespace SLMPWinTool
         {
             sOn = "Enabled";
             sOff = "Off";
+            sHalf = "Partially";
             sWork = "Working";
             sFreeze = "Freeze";
             sDisabled = "Disabled";
@@ -392,6 +420,8 @@ namespace SLMPWinTool
             eDelete = "Failed to delete file: ";
             buttonAppXON.Text = "Turn on";
             buttonAppXOFF.Text = "Turn off";
+            buttonFirewallON.Text = "Turn on";
+            buttonFirewallOFF.Text = "Turn off";
             buttonEventLogON.Text = "Turn on";
             buttonEventLogOFF.Text = "Freeze";
             button1.Text = "Pin to taskbar";
@@ -402,29 +432,36 @@ namespace SLMPWinTool
             button6.Text = "Grant access to";
             button7.Text = "Add to Library";
             button8.Text = "Pin for Classic Shell";
-            button9.Text = "3D objects";
-            button10.Text = "Downloads";
-            button11.Text = "Images";
-            button12.Text = "Music";
-            button13.Text = "Video";
+            buttonDesktop.Text = "Desktop";
+            buttonDocuments.Text = "Documents";
+            button3DObjects.Text = "3D objects";
+            buttonDownloads.Text = "Downloads";
+            buttonImages.Text = "Images";
+            buttonMusic.Text = "Music";
+            buttonVideos.Text = "Video";
             button14.Text = "Restart explorer";
             button15.Text = "Reset folders";
             button16.Text = "Reset mixer";
             button17.Text = "Reset compatibility";
+            buttonRefresh.Text = "Refresh";
             label1.Text = "AppX installation support";
             label2.Text = "Current state:";
             label4.Text = "Changes require a reboot.";
-            label7.Text = "Recording and provision";
+            label7.Text = "Event Log service";
             label6.Text = "Service status:";
             label8.Text = "Freezing requires reapplying the Freeze button after a reboot.";
             label10.Text = "Service state:";
             label11.Text = "Managing Standard Context Menu Items";
             label12.Text = "Managing elements in" + Environment.NewLine + "This computer";
             label13.Text = "Various service commands";
-            tabPage2.Text = "Event Log";
-            tabPage3.Text = "Context menu";
-            tabPage4.Text = "This computer";
-            tabPage5.Text = "Service";
+            label14.Text = "Changes require a reboot.";
+            label16.Text = "Current state:";
+            label17.Text = "Firefall service";
+            tabPage2.Text = "Firefall";
+            tabPage3.Text = "Event Log";
+            tabPage4.Text = "Context menu";
+            tabPage5.Text = "This computer";
+            tabPage6.Text = "Service";
         }
     }
 }
