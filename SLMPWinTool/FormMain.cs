@@ -13,8 +13,8 @@ namespace SLMPWinTool
     public partial class FormMain : Form
     {
         List<string> exeList = new List<string>() { Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "icacls.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "reg.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "WindowsPowerShell", "v1.0", "Powershell.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "taskkill.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "explorer.exe") };
-        string tempFile1 = Path.GetTempPath() + "SLMPWinTool1.reg";
-        string tempFile2 = Path.GetTempPath() + "SLMPWinTool2.reg";
+        string tempImport = Path.Combine(Path.GetTempPath(), "_WinToolImport.reg");
+        string tempExport = Path.Combine(Path.GetTempPath(), "_WinToolExport.reg");
         string sOn = "Включена";
         string sOff = "Выключена";
         string sHalf = "Частично";
@@ -104,7 +104,6 @@ namespace SLMPWinTool
         {
             importRegistry(new List<string>() { @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]", "\"Start\"=dword:00000002" });
         }
-
         private void buttonFirewallOFF_Click(object sender, EventArgs e)
         {
             importRegistry(new List<string>() { @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]", "\"Start\"=dword:00000004" });
@@ -217,11 +216,11 @@ namespace SLMPWinTool
             if (dialogResult(sFolders, sConfirm))
             {
                 startProcess(3, "/f /im explorer.exe");
-                deleteFile(tempFile2);
-                startProcess(1, "export " + @"HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell " + tempFile2);
+                deleteFile(tempExport);
+                startProcess(1, "export " + @"HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell " + tempExport);
                 importRegistry(new List<string>() { @"[-HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell]" });
-                startProcess(1, "import \"" + tempFile2 + "\"");
-                deleteFile(tempFile2);
+                startProcess(1, "import \"" + tempExport + "\"");
+                deleteFile(tempExport);
                 startProcess(4, null);
             }
         }
@@ -249,13 +248,13 @@ namespace SLMPWinTool
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void importRegistry(List<string> list)
         {
-            if (deleteFile(tempFile1))
+            if (deleteFile(tempImport))
             {
                 list.Insert(0, "Windows Registry Editor Version 5.00");
-                if (writeToFile(tempFile1, list))
+                if (writeToFile(tempImport, list))
                 {
-                    startProcess(1, "import \"" + tempFile1 + "\"");
-                    deleteFile(tempFile1);
+                    startProcess(1, "import \"" + tempImport + "\"");
+                    deleteFile(tempImport);
                 }
             }
             refrashValues();
