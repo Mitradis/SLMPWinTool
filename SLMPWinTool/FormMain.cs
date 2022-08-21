@@ -203,7 +203,7 @@ namespace SLMPWinTool
             toggleButton((Button)sender, new List<string>() { @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}]", @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}]" }, new List<string>() { @"[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}]", @"[-HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}]" });
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        private void button14_Click(object sender, EventArgs e)
+        private void button9_Click(object sender, EventArgs e)
         {
             if (dialogResult(sExplorer, sConfirm))
             {
@@ -214,7 +214,7 @@ namespace SLMPWinTool
                 }
             }
         }
-        private void button15_Click(object sender, EventArgs e)
+        private void button10_Click(object sender, EventArgs e)
         {
             if (dialogResult(sFolders, sConfirm))
             {
@@ -227,7 +227,7 @@ namespace SLMPWinTool
                 startProcess(4, null);
             }
         }
-        private void button16_Click(object sender, EventArgs e)
+        private void button11_Click(object sender, EventArgs e)
         {
             if (dialogResult(sMixer, sConfirm))
             {
@@ -236,7 +236,7 @@ namespace SLMPWinTool
                 startProcess(4, null);
             }
         }
-        private void button17_Click(object sender, EventArgs e)
+        private void button12_Click(object sender, EventArgs e)
         {
             if (dialogResult(sCompatibility, sConfirm))
             {
@@ -444,10 +444,10 @@ namespace SLMPWinTool
             buttonImages.Text = "Images";
             buttonMusic.Text = "Music";
             buttonVideos.Text = "Video";
-            button14.Text = "Restart explorer";
-            button15.Text = "Reset folders";
-            button16.Text = "Reset mixer";
-            button17.Text = "Reset compatibility";
+            button9.Text = "Restart explorer";
+            button10.Text = "Reset folders";
+            button11.Text = "Reset mixer";
+            button12.Text = "Reset compatibility";
             buttonRefresh.Text = "Refresh";
             label1.Text = "AppX installation support";
             label2.Text = "Current state:";
