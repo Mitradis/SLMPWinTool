@@ -12,7 +12,10 @@ namespace SLMPWinTool
 {
     public partial class FormMain : Form
     {
-        List<string> exeList = new List<string>() { Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "icacls.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "reg.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "WindowsPowerShell", "v1.0", "Powershell.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "taskkill.exe"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "explorer.exe") };
+        static string folderSystem = Environment.GetFolderPath(Environment.SpecialFolder.System);
+        static string folderWindows = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+        string folderProgramFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+        List<string> exeList = new List<string>() { Path.Combine(folderSystem, "icacls.exe"), Path.Combine(folderSystem, "reg.exe"), Path.Combine(folderSystem, "WindowsPowerShell", "v1.0", "Powershell.exe"), Path.Combine(folderSystem, "taskkill.exe"), Path.Combine(folderWindows, "explorer.exe") };
         string tempImport = Path.Combine(Path.GetTempPath(), "_WinToolImport.reg");
         string tempExport = Path.Combine(Path.GetTempPath(), "_WinToolExport.reg");
         string sOn = "Включена";
@@ -38,11 +41,10 @@ namespace SLMPWinTool
         public FormMain()
         {
             InitializeComponent();
-            if (!File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "ru-RU", "explorer.exe.mui")))
+            if (!File.Exists(Path.Combine(folderWindows, "ru-RU", "explorer.exe.mui")))
             {
                 toEnglish();
             }
-            button8.Visible = File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Classic Shell", "ClassicStartMenu.exe"));
             refrashValues();
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
@@ -70,7 +72,7 @@ namespace SLMPWinTool
         private void refrashValues()
         {
             label3.Text = getValue(3, @"SYSTEM\ControlSet001\Services\InstallService", "Start", "4") ? sOff : getValue(3, @"SYSTEM\ControlSet001\Services\mpssvc", "Start", "4") ? sHalf : sOn;
-            label5.Text = getValue(3, @"SYSTEM\ControlSet001\Services\EventLog", "Start", "2") ? (checkAccess(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "winevt", "Logs")) ? sOn : sFreeze) : sDisabled;
+            label5.Text = getValue(3, @"SYSTEM\ControlSet001\Services\EventLog", "Start", "2") ? (checkAccess(Path.Combine(folderSystem, "winevt", "Logs")) ? sOn : sFreeze) : sDisabled;
             label15.Text = getValue(3, @"SYSTEM\ControlSet001\Services\mpssvc", "Start", "4") ? sOff : sOn;
             label9.Text = checkService("EventLog") ? sWork : sOff;
             setColor(button1, 1, @"*\shellex\ContextMenuHandlers\{90AA3A4E-1CBA-4233-B8BB-535773D48449}");
@@ -89,6 +91,7 @@ namespace SLMPWinTool
             setColor(buttonImages, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}");
             setColor(buttonMusic, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}");
             setColor(buttonVideos, 3, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}");
+            button8.Visible = File.Exists(Path.Combine(folderProgramFiles, "Classic Shell", "ClassicStartMenu.exe"));
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void buttonAppXON_Click(object sender, System.EventArgs e)
@@ -111,7 +114,7 @@ namespace SLMPWinTool
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void buttonEventLogON_Click(object sender, EventArgs e)
         {
-            startProcess(2, "-executionpolicy remotesigned -Command \"& Get-Acl -Path " + Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "winevt", "TraceFormat") + " | Set-Acl -Path " + Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "winevt", "Logs") + "\"");
+            startProcess(2, "-executionpolicy remotesigned -Command \"& Get-Acl -Path " + Path.Combine(folderSystem, "winevt", "TraceFormat") + " | Set-Acl -Path " + Path.Combine(folderSystem, "winevt", "Logs") + "\"");
             importRegistry(new List<string>() { @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog]", "\"Start\"=dword:00000002" });
             startService("EventLog");
         }
@@ -119,7 +122,7 @@ namespace SLMPWinTool
         {
             if (label5.Text == sDisabled)
             {
-                string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "winevt", "Logs");
+                string path = Path.Combine(folderSystem, "winevt", "Logs");
                 try
                 {
                     Directory.Delete(path, true);
@@ -344,7 +347,10 @@ namespace SLMPWinTool
         {
             try
             {
-                Directory.EnumerateFiles(path);
+                foreach(string line in Directory.EnumerateFiles(path))
+                {
+                    break;
+                }
                 return true;
             }
             catch
