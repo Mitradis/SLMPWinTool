@@ -347,7 +347,7 @@ namespace SLMPWinTool
         {
             try
             {
-                foreach(string line in Directory.EnumerateFiles(path))
+                foreach (string line in Directory.EnumerateFiles(path))
                 {
                     break;
                 }
