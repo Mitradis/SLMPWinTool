@@ -220,7 +220,7 @@ namespace SLMPWinTool
             {
                 startProcess(3, "/f /im explorer.exe");
                 deleteFile(tempExport);
-                startProcess(1, "export " + @"HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell " + tempExport);
+                startProcess(1, "export " + "\"" + @"HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell" + "\" " + "\"" + tempExport + "\"");
                 importRegistry(new List<string>() { @"[-HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell]" });
                 startProcess(1, "import \"" + tempExport + "\"");
                 deleteFile(tempExport);
