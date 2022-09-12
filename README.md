@@ -1,4 +1,4 @@
 # SLMPWinTool
 Программа созданная в рамках упрощения обслуживания сборки Windows на базе DISM-Scripts
 
-![image](https://user-images.githubusercontent.com/21084600/181996555-ee892d6e-90e7-42d5-8a35-f4252817c2bf.png)
+![image](https://user-images.githubusercontent.com/21084600/189706167-99fff182-9a3d-445e-b001-b484074c2888.png)
