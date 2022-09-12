@@ -37,6 +37,7 @@ namespace SLMPWinTool
         string eRestart = "Требуется перезагрузка для запуска: ";
         string eWrite = "Не удалось записать файл: ";
         string eDelete = "Не удалось удалить файл: ";
+        Point lastLocation;
 
         public FormMain()
         {
@@ -46,27 +47,6 @@ namespace SLMPWinTool
                 toEnglish();
             }
             refrashValues();
-        }
-        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            Brush _textBrush;
-            TabPage _tabPage = tabControl1.TabPages[e.Index];
-            Rectangle _tabBounds = tabControl1.GetTabRect(e.Index);
-            if (e.State == DrawItemState.Selected)
-            {
-                _textBrush = new SolidBrush(Color.Blue);
-            }
-            else
-            {
-                _textBrush = new SolidBrush(e.ForeColor);
-            }
-            Font _tabFont = new System.Drawing.Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-            StringFormat _stringFlags = new StringFormat();
-            _stringFlags.Alignment = StringAlignment.Center;
-            _stringFlags.LineAlignment = StringAlignment.Center;
-            g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void refrashValues()
@@ -249,6 +229,11 @@ namespace SLMPWinTool
             refrashValues();
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void importRegistry(List<string> list)
         {
             if (deleteFile(tempImport))
@@ -402,6 +387,28 @@ namespace SLMPWinTool
             DialogResult dialog = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
             return dialog == DialogResult.Yes;
         }
+        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
+        private void labelMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastLocation = e.Location;
+            labelMain.MouseMove += labelMain_MouseMove;
+            labelMain.MouseLeave += labelMain_MouseLeave;
+        }
+        private void labelMain_MouseUp(object sender, MouseEventArgs e)
+        {
+            labelMain.MouseMove -= labelMain_MouseMove;
+            labelMain.MouseLeave -= labelMain_MouseLeave;
+        }
+        private void labelMain_MouseLeave(object sender, EventArgs e)
+        {
+            labelMain.MouseMove -= labelMain_MouseMove;
+            labelMain.MouseLeave -= labelMain_MouseLeave;
+        }
+        private void labelMain_MouseMove(object sender, MouseEventArgs e)
+        {
+            Location = new Point((Location.X - lastLocation.X) + e.X, (Location.Y - lastLocation.Y) + e.Y);
+        }
+        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void toEnglish()
         {
             sOn = "Enabled";
@@ -448,6 +455,7 @@ namespace SLMPWinTool
             button10.Text = "Reset folders";
             button11.Text = "Reset mixer";
             button12.Text = "Reset compatibility";
+            buttonClose.Text = "Close";
             buttonRefresh.Text = "Refresh";
             label1.Text = "AppX installation support";
             label2.Text = "Current state:";
