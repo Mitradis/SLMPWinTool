@@ -725,6 +725,7 @@
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             this.buttonRefresh.MouseEnter += new System.EventHandler(this.buttonRefresh_MouseEnter);
+            this.buttonRefresh.MouseLeave += new System.EventHandler(this.buttonRefresh_MouseLeave);
             // 
             // buttonClose
             // 
@@ -738,6 +739,7 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
+            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             // 
             // labelMain
             // 
@@ -771,6 +773,7 @@
             this.buttonMinimize.UseVisualStyleBackColor = true;
             this.buttonMinimize.Click += new System.EventHandler(this.buttonMinimize_Click);
             this.buttonMinimize.MouseEnter += new System.EventHandler(this.buttonMinimize_MouseEnter);
+            this.buttonMinimize.MouseLeave += new System.EventHandler(this.buttonMinimize_MouseLeave);
             // 
             // FormMain
             // 

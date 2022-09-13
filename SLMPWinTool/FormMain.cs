@@ -498,33 +498,27 @@ namespace SLMPWinTool
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void buttonClose_MouseEnter(object sender, EventArgs e)
         {
-            buttonClose.MouseLeave += buttonClose_MouseLeave;
             buttonClose.BackgroundImage = Properties.Resources.buttonCloseGlow;
         }
         private void buttonClose_MouseLeave(object sender, EventArgs e)
         {
             buttonClose.BackgroundImage = Properties.Resources.buttonClose;
-            buttonClose.MouseLeave -= buttonClose_MouseLeave;
         }
         private void buttonMinimize_MouseEnter(object sender, EventArgs e)
         {
-            buttonMinimize.MouseLeave += buttonMinimize_MouseLeave;
             buttonMinimize.BackgroundImage = Properties.Resources.buttonMinimizeGlow;
         }
         private void buttonMinimize_MouseLeave(object sender, EventArgs e)
         {
             buttonMinimize.BackgroundImage = Properties.Resources.buttonMinimize;
-            buttonMinimize.MouseLeave -= buttonMinimize_MouseLeave;
         }
         private void buttonRefresh_MouseEnter(object sender, EventArgs e)
         {
-            buttonRefresh.MouseLeave += buttonRefresh_MouseLeave;
             buttonRefresh.BackgroundImage = Properties.Resources.buttonRefreshGlow;
         }
         private void buttonRefresh_MouseLeave(object sender, EventArgs e)
         {
             buttonRefresh.BackgroundImage = Properties.Resources.buttonRefresh;
-            buttonRefresh.MouseLeave -= buttonRefresh_MouseLeave;
         }
     }
 }
