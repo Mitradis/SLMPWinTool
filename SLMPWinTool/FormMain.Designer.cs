@@ -28,6 +28,7 @@
         private System.Windows.Forms.Button buttonFirewallON;
         private System.Windows.Forms.Button buttonImages;
         private System.Windows.Forms.Button buttonMusic;
+        private System.Windows.Forms.Button buttonMinimize;
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.Button buttonVideos;
         private System.Windows.Forms.Label label10;
@@ -47,6 +48,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label labelLogo;
         private System.Windows.Forms.Label labelMain;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabControl tabControl1;
@@ -122,6 +124,8 @@
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
             this.labelMain = new System.Windows.Forms.Label();
+            this.labelLogo = new System.Windows.Forms.Label();
+            this.buttonMinimize = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -250,7 +254,7 @@
             this.label14.Location = new System.Drawing.Point(6, 119);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(250, 143);
-            this.label14.TabIndex = 2;
+            this.label14.TabIndex = 0;
             this.label14.Text = "При изменении требуется перезагрузка.";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -261,7 +265,7 @@
             this.label15.Location = new System.Drawing.Point(159, 79);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(97, 40);
-            this.label15.TabIndex = 3;
+            this.label15.TabIndex = 0;
             this.label15.Text = "Выключена";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -271,7 +275,7 @@
             this.label16.Location = new System.Drawing.Point(6, 79);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(147, 40);
-            this.label16.TabIndex = 4;
+            this.label16.TabIndex = 0;
             this.label16.Text = "Текущее состояние:";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -281,7 +285,7 @@
             this.label17.Location = new System.Drawing.Point(6, 3);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(250, 40);
-            this.label17.TabIndex = 5;
+            this.label17.TabIndex = 0;
             this.label17.Text = "Служба Брандмауэр";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -531,7 +535,7 @@
             this.label11.Location = new System.Drawing.Point(6, 3);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(250, 40);
-            this.label11.TabIndex = 1;
+            this.label11.TabIndex = 0;
             this.label11.Text = "Управление стандартными пунктами контекстного меню";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -636,7 +640,7 @@
             this.label12.Location = new System.Drawing.Point(6, 3);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(250, 40);
-            this.label12.TabIndex = 2;
+            this.label12.TabIndex = 0;
             this.label12.Text = "Управление элементами в\r\nЭтот компьютер";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -705,42 +709,68 @@
             this.label13.Location = new System.Drawing.Point(6, 3);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(250, 40);
-            this.label13.TabIndex = 3;
+            this.label13.TabIndex = 0;
             this.label13.Text = "Различные сервисные  команды";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonRefresh.Location = new System.Drawing.Point(8, 8);
+            this.buttonRefresh.BackgroundImage = global::SLMPWinTool.Properties.Resources.buttonRefresh;
+            this.buttonRefresh.FlatAppearance.BorderSize = 0;
+            this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRefresh.Location = new System.Drawing.Point(9, 8);
             this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(101, 25);
+            this.buttonRefresh.Size = new System.Drawing.Size(25, 25);
             this.buttonRefresh.TabIndex = 0;
-            this.buttonRefresh.Text = "Обновить";
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            this.buttonRefresh.MouseEnter += new System.EventHandler(this.buttonRefresh_MouseEnter);
             // 
             // buttonClose
             // 
-            this.buttonClose.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonClose.Location = new System.Drawing.Point(177, 8);
+            this.buttonClose.BackgroundImage = global::SLMPWinTool.Properties.Resources.buttonClose;
+            this.buttonClose.FlatAppearance.BorderSize = 0;
+            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClose.Location = new System.Drawing.Point(252, 8);
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(101, 25);
+            this.buttonClose.Size = new System.Drawing.Size(25, 25);
             this.buttonClose.TabIndex = 100;
-            this.buttonClose.Text = "Закрыть";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
             // 
             // labelMain
             // 
-            this.labelMain.BackColor = System.Drawing.Color.Transparent;
             this.labelMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMain.Location = new System.Drawing.Point(0, 0);
             this.labelMain.Name = "labelMain";
             this.labelMain.Size = new System.Drawing.Size(286, 363);
-            this.labelMain.TabIndex = 101;
-            this.labelMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelMain_MouseDown);
-            this.labelMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.labelMain_MouseUp);
+            this.labelMain.TabIndex = 0;
+            this.labelMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mainLabels_MouseDown);
+            this.labelMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mainLabels_MouseUp);
+            // 
+            // labelLogo
+            // 
+            this.labelLogo.Image = global::SLMPWinTool.Properties.Resources.MainLogo;
+            this.labelLogo.Location = new System.Drawing.Point(1, 1);
+            this.labelLogo.Name = "labelLogo";
+            this.labelLogo.Size = new System.Drawing.Size(284, 35);
+            this.labelLogo.TabIndex = 0;
+            this.labelLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mainLabels_MouseDown);
+            this.labelLogo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mainLabels_MouseUp);
+            // 
+            // buttonMinimize
+            // 
+            this.buttonMinimize.BackgroundImage = global::SLMPWinTool.Properties.Resources.buttonMinimize;
+            this.buttonMinimize.FlatAppearance.BorderSize = 0;
+            this.buttonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMinimize.Location = new System.Drawing.Point(221, 8);
+            this.buttonMinimize.Name = "buttonMinimize";
+            this.buttonMinimize.Size = new System.Drawing.Size(25, 25);
+            this.buttonMinimize.TabIndex = 101;
+            this.buttonMinimize.UseVisualStyleBackColor = true;
+            this.buttonMinimize.Click += new System.EventHandler(this.buttonMinimize_Click);
+            this.buttonMinimize.MouseEnter += new System.EventHandler(this.buttonMinimize_MouseEnter);
             // 
             // FormMain
             // 
@@ -748,9 +778,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(286, 363);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonMinimize);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.labelLogo);
             this.Controls.Add(this.labelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -759,7 +791,7 @@
             this.Name = "FormMain";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WinTool";
+            this.Text = "Win 10 Tool";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

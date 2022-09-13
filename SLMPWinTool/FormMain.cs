@@ -16,6 +16,8 @@ namespace SLMPWinTool
         static string folderWindows = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
         string folderProgramFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
         List<string> exeList = new List<string>() { Path.Combine(folderSystem, "icacls.exe"), Path.Combine(folderSystem, "reg.exe"), Path.Combine(folderSystem, "WindowsPowerShell", "v1.0", "Powershell.exe"), Path.Combine(folderSystem, "taskkill.exe"), Path.Combine(folderWindows, "explorer.exe") };
+        const int WS_MINIMIZEBOX = 0x20000;
+        const int CS_DBLCLKS = 0x8;
         string tempImport = Path.Combine(Path.GetTempPath(), "_WinToolImport.reg");
         string tempExport = Path.Combine(Path.GetTempPath(), "_WinToolExport.reg");
         string sOn = "Включена";
@@ -47,6 +49,17 @@ namespace SLMPWinTool
                 toEnglish();
             }
             refrashValues();
+        }
+        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.Style |= WS_MINIMIZEBOX;
+                cp.ClassStyle |= CS_DBLCLKS;
+                return cp;
+            }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void refrashValues()
@@ -226,12 +239,20 @@ namespace SLMPWinTool
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
+            labelMain.Focus();
             refrashValues();
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void buttonClose_Click(object sender, EventArgs e)
         {
+            labelMain.Focus();
             Application.Exit();
+        }
+        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
+        private void buttonMinimize_Click(object sender, EventArgs e)
+        {
+            labelMain.Focus();
+            WindowState = FormWindowState.Minimized;
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         private void importRegistry(List<string> list)
@@ -388,23 +409,23 @@ namespace SLMPWinTool
             return dialog == DialogResult.Yes;
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        private void labelMain_MouseDown(object sender, MouseEventArgs e)
+        private void mainLabels_MouseDown(object sender, MouseEventArgs e)
         {
             lastLocation = e.Location;
-            labelMain.MouseMove += labelMain_MouseMove;
-            labelMain.MouseLeave += labelMain_MouseLeave;
+            ((Label)sender).MouseMove += mainLabels_MouseMove;
+            ((Label)sender).MouseLeave += mainLabels_MouseLeave;
         }
-        private void labelMain_MouseUp(object sender, MouseEventArgs e)
+        private void mainLabels_MouseUp(object sender, MouseEventArgs e)
         {
-            labelMain.MouseMove -= labelMain_MouseMove;
-            labelMain.MouseLeave -= labelMain_MouseLeave;
+            ((Label)sender).MouseMove -= mainLabels_MouseMove;
+            ((Label)sender).MouseLeave -= mainLabels_MouseLeave;
         }
-        private void labelMain_MouseLeave(object sender, EventArgs e)
+        private void mainLabels_MouseLeave(object sender, EventArgs e)
         {
-            labelMain.MouseMove -= labelMain_MouseMove;
-            labelMain.MouseLeave -= labelMain_MouseLeave;
+            ((Label)sender).MouseMove -= mainLabels_MouseMove;
+            ((Label)sender).MouseLeave -= mainLabels_MouseLeave;
         }
-        private void labelMain_MouseMove(object sender, MouseEventArgs e)
+        private void mainLabels_MouseMove(object sender, MouseEventArgs e)
         {
             Location = new Point((Location.X - lastLocation.X) + e.X, (Location.Y - lastLocation.Y) + e.Y);
         }
@@ -455,8 +476,6 @@ namespace SLMPWinTool
             button10.Text = "Reset folders";
             button11.Text = "Reset mixer";
             button12.Text = "Reset compatibility";
-            buttonClose.Text = "Close";
-            buttonRefresh.Text = "Refresh";
             label1.Text = "AppX installation support";
             label2.Text = "Current state:";
             label4.Text = "Changes require a reboot.";
@@ -475,6 +494,37 @@ namespace SLMPWinTool
             tabPage4.Text = "Context menu";
             tabPage5.Text = "This computer";
             tabPage6.Text = "Service";
+        }
+        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
+        private void buttonClose_MouseEnter(object sender, EventArgs e)
+        {
+            buttonClose.MouseLeave += buttonClose_MouseLeave;
+            buttonClose.BackgroundImage = Properties.Resources.buttonCloseGlow;
+        }
+        private void buttonClose_MouseLeave(object sender, EventArgs e)
+        {
+            buttonClose.BackgroundImage = Properties.Resources.buttonClose;
+            buttonClose.MouseLeave -= buttonClose_MouseLeave;
+        }
+        private void buttonMinimize_MouseEnter(object sender, EventArgs e)
+        {
+            buttonMinimize.MouseLeave += buttonMinimize_MouseLeave;
+            buttonMinimize.BackgroundImage = Properties.Resources.buttonMinimizeGlow;
+        }
+        private void buttonMinimize_MouseLeave(object sender, EventArgs e)
+        {
+            buttonMinimize.BackgroundImage = Properties.Resources.buttonMinimize;
+            buttonMinimize.MouseLeave -= buttonMinimize_MouseLeave;
+        }
+        private void buttonRefresh_MouseEnter(object sender, EventArgs e)
+        {
+            buttonRefresh.MouseLeave += buttonRefresh_MouseLeave;
+            buttonRefresh.BackgroundImage = Properties.Resources.buttonRefreshGlow;
+        }
+        private void buttonRefresh_MouseLeave(object sender, EventArgs e)
+        {
+            buttonRefresh.BackgroundImage = Properties.Resources.buttonRefresh;
+            buttonRefresh.MouseLeave -= buttonRefresh_MouseLeave;
         }
     }
 }
