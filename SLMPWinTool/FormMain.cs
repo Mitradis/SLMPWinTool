@@ -47,6 +47,11 @@ namespace SLMPWinTool
             if (!File.Exists(Path.Combine(folderWindows, "ru-RU", "explorer.exe.mui")))
             {
                 toEnglish();
+                toolTip1.SetToolTip(buttonRefresh, "Refresh");
+            }
+            else
+            {
+                toolTip1.SetToolTip(buttonRefresh, "Обновить");
             }
             refrashValues();
         }

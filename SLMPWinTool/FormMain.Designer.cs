@@ -58,6 +58,7 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.ToolTip toolTip1;
 
         protected override void Dispose(bool disposing)
         {
@@ -70,6 +71,7 @@
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -126,6 +128,7 @@
             this.labelMain = new System.Windows.Forms.Label();
             this.labelLogo = new System.Windows.Forms.Label();
             this.buttonMinimize = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
