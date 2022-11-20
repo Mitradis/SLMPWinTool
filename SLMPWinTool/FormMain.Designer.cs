@@ -719,6 +719,7 @@
             // buttonRefresh
             // 
             this.buttonRefresh.BackgroundImage = global::SLMPWinTool.Properties.Resources.buttonRefresh;
+            this.buttonRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonRefresh.FlatAppearance.BorderSize = 0;
             this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRefresh.Location = new System.Drawing.Point(9, 8);
@@ -733,6 +734,7 @@
             // buttonClose
             // 
             this.buttonClose.BackgroundImage = global::SLMPWinTool.Properties.Resources.buttonClose;
+            this.buttonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonClose.FlatAppearance.BorderSize = 0;
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonClose.Location = new System.Drawing.Point(252, 8);
@@ -767,6 +769,7 @@
             // buttonMinimize
             // 
             this.buttonMinimize.BackgroundImage = global::SLMPWinTool.Properties.Resources.buttonMinimize;
+            this.buttonMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonMinimize.FlatAppearance.BorderSize = 0;
             this.buttonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonMinimize.Location = new System.Drawing.Point(221, 8);
