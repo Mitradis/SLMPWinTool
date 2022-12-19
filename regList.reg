@@ -83,11 +83,13 @@
 @"[-HKEY_CLASSES_ROOT\Msi.Package\shellex\ContextMenuHandlers\Compatibility]"
 
 Отправить
-@"[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\ModernSharing]",
-"@=\"{e2bf9676-5f8f-435c-97eb-11607a5bedf7}\"",
+@"[HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\ModernSharing]" ||
+@"[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\ModernSharing]"
+"@=\"{e2bf9676-5f8f-435c-97eb-11607a5bedf7}\""
 @"[HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\SendTo]",
 "@=\"{7BA4C740-9E81-11CF-99D3-00AA004AE837}\""
 
+@"[-HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\ModernSharing]" ||
 @"[-HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\ModernSharing]",
 @"[-HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\SendTo]"
 
@@ -100,11 +102,17 @@
 "@=\"{f81e9010-6ea4-11ce-a7ff-00aa003ca9f6}\"",
 @"[HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\Sharing]",
 "@=\"{f81e9010-6ea4-11ce-a7ff-00aa003ca9f6}\""
+@"[HKEY_CLASSES_ROOT\LibraryFolder\background\shellex\ContextMenuHandlers\Sharing]",
+"@=\"{f81e9010-6ea4-11ce-a7ff-00aa003ca9f6}\"",
+@"[HKEY_CLASSES_ROOT\UserLibraryFolder\shellex\ContextMenuHandlers\Sharing]",
+"@=\"{f81e9010-6ea4-11ce-a7ff-00aa003ca9f6}\""
 
 @"[-HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\Sharing]",
 @"[-HKEY_CLASSES_ROOT\Directory\background\shellex\ContextMenuHandlers\Sharing]",
 @"[-HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\Sharing]",
-@"[-HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\Sharing]"
+@"[-HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\Sharing]",
+@"[-HKEY_CLASSES_ROOT\LibraryFolder\background\shellex\ContextMenuHandlers\Sharing]",
+@"[-HKEY_CLASSES_ROOT\UserLibraryFolder\shellex\ContextMenuHandlers\Sharing]"
 
 Добавить в библиотеку
 @"[HKEY_CLASSES_ROOT\Folder\shellex\ContextMenuHandlers\Library Location]",

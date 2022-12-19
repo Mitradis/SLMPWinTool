@@ -77,7 +77,10 @@
   <data name="buttonRefreshGlow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buttonRefreshGlow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MainLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MainLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MainLogo10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MainLogo10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainLogo11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MainLogo11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

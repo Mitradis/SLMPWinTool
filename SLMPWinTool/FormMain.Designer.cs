@@ -453,6 +453,7 @@
             this.button8.TabIndex = 7;
             this.button8.Text = "Добавить для Classic Shell";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Visible = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
@@ -758,7 +759,7 @@
             // 
             // labelLogo
             // 
-            this.labelLogo.Image = global::SLMPWinTool.Properties.Resources.MainLogo;
+            this.labelLogo.Image = global::SLMPWinTool.Properties.Resources.MainLogo10;
             this.labelLogo.Location = new System.Drawing.Point(1, 1);
             this.labelLogo.Name = "labelLogo";
             this.labelLogo.Size = new System.Drawing.Size(284, 35);
