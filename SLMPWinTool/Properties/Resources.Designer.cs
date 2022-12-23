@@ -98,20 +98,11 @@
             }
         }
 
-        internal static System.Drawing.Bitmap MainLogo10
+        internal static System.Drawing.Bitmap MainLogo
         {
             get
             {
-                object obj = ResourceManager.GetObject("MainLogo10", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        internal static System.Drawing.Bitmap MainLogo11
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MainLogo11", resourceCulture);
+                object obj = ResourceManager.GetObject("MainLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -76,14 +76,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <None Include="Resources\MainLogo11.png" />
     <None Include="Resources\buttonCloseGlow.png" />
     <None Include="Resources\buttonClose.png" />
     <None Include="Resources\buttonMinimizeGlow.png" />
     <None Include="Resources\buttonMinimize.png" />
     <None Include="Resources\buttonRefreshGlow.png" />
     <None Include="Resources\buttonRefresh.png" />
-    <None Include="Resources\MainLogo10.png" />
+    <None Include="Resources\MainLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
